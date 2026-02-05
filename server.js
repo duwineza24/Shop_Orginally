@@ -12,10 +12,14 @@ app.use(express.json());
 
 // Configure CORS for production
 const corsOptions = {
-  origin: process.env.FRONTEND_URL || "http://localhost:2000",
+  origin: [
+    'http://localhost:2000',
+    'https://shopperease-frontend.vercel.app'
+  ],
   credentials: true,
   optionsSuccessStatus: 200
 };
+
 app.use(cors(corsOptions));
 
 // Connect to MongoDB
