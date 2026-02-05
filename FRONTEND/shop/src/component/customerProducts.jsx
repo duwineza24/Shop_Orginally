@@ -13,7 +13,7 @@ export default function CustomerProduct() {
   const itemsPerPage = 8;
 
   const navigate = useNavigate();
-
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:2000';
   /* ================= AUTH CHECK ================= */
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -27,7 +27,7 @@ export default function CustomerProduct() {
   /* ================= FETCH PRODUCTS ================= */
   const fetchProducts = async () => {
     try {
-      const res = await fetch("http://localhost:2000/api/product");
+      const res = await fetch(`${API_URL}/api/product`);
       const data = await res.json();
       setProducts(data);
       setLoading(false);

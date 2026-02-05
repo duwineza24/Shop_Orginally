@@ -6,7 +6,7 @@ import {
   FaMoneyBillWave,
   FaArrowLeft,
 } from "react-icons/fa";
-
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:2000';
 const SellerAnalytics = () => {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
@@ -22,13 +22,13 @@ const SellerAnalytics = () => {
       try {
         // PRODUCTS
         const productRes = await fetch(
-          "http://localhost:2000/api/product/seller/me",
+          `${API_URL}/api/product/seller/me`,
           { headers: { Authorization: `Bearer ${token}` } }
         );
         const products = await productRes.json();
 
         // ORDERS
-        const orderRes = await fetch("http://localhost:2000/api/order/seller", {
+        const orderRes = await fetch(`${API_URL}/api/order/seller`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         const ordersData = await orderRes.json();

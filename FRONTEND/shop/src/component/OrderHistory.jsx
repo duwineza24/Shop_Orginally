@@ -6,7 +6,7 @@ export default function OrderHistory() {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-
+ const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:2000';
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
     const token = localStorage.getItem("token");
@@ -19,7 +19,7 @@ export default function OrderHistory() {
     const fetchHistory = async () => {
       try {
         const res = await fetch(
-          `http://localhost:2000/api/order/user/${user._id}`,
+          `${API_URL}/api/order/user/${user._id}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }

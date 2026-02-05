@@ -5,7 +5,7 @@ import { FaBars, FaTimes } from "react-icons/fa";
 export default function Navbar({ dark }) {
   const [open, setOpen] = useState(false);
   const location = useLocation();
-
+ 
   const isActive = (path) =>
     location.pathname === path
       ? "text-blue-500 font-semibold"

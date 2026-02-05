@@ -33,13 +33,13 @@ export default function SellerOrdersAll() {
 
     fetchOrders();
   }, [token]);
-
+ const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:2000';
   // ================= UPDATE PAYMENT STATUS =================
   const updatePaymentStatus = async (orderId, status) => {
     setUpdatingId(orderId);
     try {
       const res = await fetch(
-        `http://localhost:2000/api/order/${orderId}/payment`,
+        `${API_URL}/api/order/${orderId}/payment`,
         {
           method: "PUT",
           headers: {

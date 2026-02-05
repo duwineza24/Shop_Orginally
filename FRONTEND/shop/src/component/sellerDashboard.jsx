@@ -6,22 +6,22 @@ import { useNavigate } from "react-router-dom";
 const SellerDashboard = () => {
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
-
+ 
   const [stats, setStats] = useState({
     products: 0,
     orders: 0,
   });
-
+ const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:2000';
   useEffect(() => {
     const loadData = async () => {
       try {
         const productRes = await fetch(
-          "http://localhost:2000/api/product/seller/me",
+          `${API_URL}/api/product/seller/me`,
           { headers: { Authorization: `Bearer ${token}` } }
         );
         const products = await productRes.json();
 
-        const orderRes = await fetch("http://localhost:2000/api/order/seller", {
+        const orderRes = await fetch(`${API_URL}/api/order/seller`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         const orderData = await orderRes.json();

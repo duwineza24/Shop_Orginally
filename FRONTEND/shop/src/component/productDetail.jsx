@@ -7,7 +7,7 @@ export default function ProductDetails() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const navigate = useNavigate();
-
+ const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:2000';
   useEffect(() => {
     const token = localStorage.getItem("token");
 
@@ -16,7 +16,7 @@ export default function ProductDetails() {
       return;
     }
 
-    fetch(`http://localhost:2000/api/product/${id}`, {
+    fetch(`${API_URL}/api/product/${id}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

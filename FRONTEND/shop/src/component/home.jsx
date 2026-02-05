@@ -9,7 +9,7 @@ import {
   FaShieldAlt,
   FaStar,
 } from "react-icons/fa";
-
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:2000';
 export default function Home() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -17,7 +17,7 @@ export default function Home() {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const res = await fetch("http://localhost:2000/api/product");
+      const res = await fetch(`${API_URL}/api/product`);
       const data = await res.json();
       setProducts(data);
       setLoading(false);

@@ -8,7 +8,7 @@ export default function CustomerOrders() {
   const [loading, setLoading] = useState(true);
 
   const navigate = useNavigate();
-
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:2000';
   /* ===================== AUTH + FETCH ===================== */
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
@@ -19,7 +19,7 @@ export default function CustomerOrders() {
       return;
     }
 
-    fetch(`http://localhost:2000/api/order/user/${user._id}`, {
+    fetch(`${API_URL}/api/order/user/${user._id}`, {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => res.json())
@@ -82,7 +82,7 @@ export default function CustomerOrders() {
   const saveOrder = async (id) => {
     const token = localStorage.getItem("token");
 
-    const res = await fetch(`http://localhost:2000/api/order/${id}`, {
+    const res = await fetch(`${API_URL}/api/order/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -104,7 +104,7 @@ export default function CustomerOrders() {
 
     const token = localStorage.getItem("token");
 
-    const res = await fetch(`http://localhost:2000/api/order/${id}`, {
+    const res = await fetch(`${API_URL}/api/order/${id}`, {
       method: "DELETE",
       headers: { Authorization: `Bearer ${token}` },
     });

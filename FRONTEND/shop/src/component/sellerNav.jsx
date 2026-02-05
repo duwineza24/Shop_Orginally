@@ -9,11 +9,11 @@ import {
   FaMoon,
   FaSun,
 } from "react-icons/fa";
-
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:2000';
 const SellerNav = () => {
   const navigate = useNavigate();
   const location = useLocation();
-
+ 
   /* ================= THEME ================= */
   const [darkMode, setDarkMode] = useState(
     localStorage.getItem("seller-theme") !== "light"
@@ -30,7 +30,7 @@ const SellerNav = () => {
     const token = localStorage.getItem("token");
 
     // Example API – adjust if needed
-    fetch("http://localhost:2000/api/order/seller/new", {
+    fetch(`${API_URL}/api/order/seller/new`, {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => res.json())

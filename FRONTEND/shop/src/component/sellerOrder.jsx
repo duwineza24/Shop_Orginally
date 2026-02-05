@@ -5,7 +5,7 @@ export default function SellerOrder() {
   const { productId } = useParams();
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
-
+  const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:2000';
   const [orders, setOrders] = useState([]);
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -30,7 +30,7 @@ export default function SellerOrder() {
     const fetchOrders = async () => {
       try {
         const res = await fetch(
-          `http://localhost:2000/api/order/product/${productId}`,
+          `${API_URL}/api/order/product/${productId}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -60,7 +60,7 @@ export default function SellerOrder() {
     setUpdatingId(orderId);
     try {
       const res = await fetch(
-        `http://localhost:2000/api/order/${orderId}/status`,
+        `${API_URL}/api/order/${orderId}/status`,
         {
           method: "PUT",
           headers: {

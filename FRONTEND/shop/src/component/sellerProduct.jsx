@@ -13,13 +13,14 @@ const SellerProducts = () => {
     rating: "",
     description: "",
   });
-
+ 
+  const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:2000';
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
 
   const fetchProducts = async () => {
     try {
-      const res = await fetch("http://localhost:2000/api/product/seller/me", {
+      const res = await fetch(`${API_URL}/api/product/seller/me`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await res.json();
@@ -39,7 +40,7 @@ const SellerProducts = () => {
   const handleUpdateProduct = async () => {
     try {
       const res = await fetch(
-        `http://localhost:2000/api/product/${editingProduct._id}`,
+        `${API_URL}/api/product/${editingProduct._id}`,
         {
           method: "PUT",
           headers: {
@@ -60,7 +61,7 @@ const SellerProducts = () => {
 
   const handleDeleteProduct = async (id) => {
     if (!window.confirm("Delete this product?")) return;
-    await fetch(`http://localhost:2000/api/product/${id}`, {
+    await fetch(`${API_URL}/api/product/${id}`, {
       method: "DELETE",
       headers: { Authorization: `Bearer ${token}` },
     });

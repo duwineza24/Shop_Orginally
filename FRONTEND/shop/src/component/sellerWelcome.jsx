@@ -3,7 +3,7 @@ import { FaPlus, FaList, FaCartArrowDown, FaChartLine } from "react-icons/fa";
 
 export default function SellerWelcome() {
   const navigate = useNavigate();
-
+ 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 px-6 py-16">
       <div className="max-w-7xl mx-auto">

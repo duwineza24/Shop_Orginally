@@ -13,6 +13,9 @@ import {
   FaSun,
 } from "react-icons/fa";
 
+
+
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:2000';
 export default function CustomerDashboard() {
   const [user, setUser] = useState(null);
   const [stats, setStats] = useState({
@@ -49,7 +52,7 @@ export default function CustomerDashboard() {
     setUser(userObj);
 
     // Fetch orders for stats
-    fetch(`http://localhost:2000/api/order/user/${userObj._id}`, {
+    fetch(`${API_URL}/api/order/user/${userObj._id}`, {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => res.json())
